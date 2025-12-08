@@ -11,9 +11,11 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
+{
+    $users = \App\Models\User::all();
+    return view('admin.users.index', compact('users'));
+}
+
 
     /**
      * Show the form for creating a new resource.
