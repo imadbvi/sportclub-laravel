@@ -20,15 +20,11 @@
                 <a href="{{ route('admin.dashboard') }}" class="block p-2 rounded hover:bg-gray-200">
                     Dashboard
                 </a>
-                <a href="{{ route('admin.users.index') }}" class="block p-2 rounded hover:bg-gray-200">
-                    Gebruikers beheren
-                </a>
-                <a href="#" class="block p-2 rounded hover:bg-gray-200">
-                    Nieuws beheren
-                </a>
-                <a href="#" class="block p-2 rounded hover:bg-gray-200">
-                    FAQ beheren
-                </a>
+                {{-- 
+<a href="{{ route('admin.users.index') }}" class="block p-2 rounded hover:bg-gray-200">
+    Gebruikers beheren
+</a>
+--}}
             </nav>
         </aside>
 

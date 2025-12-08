@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
-    {
-        // Controleer of gebruiker is ingelogd en admin is
-        if (!auth()->check() || auth()->user()->is_admin !== true) {
-            abort(403, 'Toegang geweigerd.');
-        }
-
-        return $next($request);
+    public function handle(Request $request, Closure $next)
+{
+    if (!auth()->check() || auth()->user()->is_admin != 1) {
+        abort(403, 'Toegang geweigerd');
     }
+
+    return $next($request);
+}
+
 }

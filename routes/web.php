@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
 
 // ==== ADMIN ROUTES (BELANGRIJK!) ====
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
 });
 
