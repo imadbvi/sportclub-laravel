@@ -21,11 +21,19 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// ==== ADMIN ROUTES (BELANGRIJK!) ====
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+// ==== ADMIN ROUTES ====
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
+
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)
+        ->names('admin.users');
+
 });
+
+
 
 
 require __DIR__.'/auth.php';
