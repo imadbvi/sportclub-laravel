@@ -1,2 +1,7 @@
-<h1>Welkom Admin!</h1>
-<p>Je bent ingelogd als beheerder.</p>
+@extends('admin.layout')
+
+@section('title', 'Dashboard')
+
+@section('content')
+<p>Welkom in het admin dashboard, {{ auth()->user()->name }}!</p>
+@endsection
