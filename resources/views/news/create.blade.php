@@ -2,48 +2,54 @@
 
 @section('header')
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Nieuw nieuwsbericht
+        Nieuws aanmaken
     </h2>
 @endsection
 
 @section('content')
-
 <div class="py-12">
-    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white p-6 shadow-xl sm:rounded-lg">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
 
-            <h1 class="text-2xl font-bold mb-4">Maak een nieuwsbericht</h1>
-
-            <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('news.store') }}"
+                  method="POST"
+                  enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-4">
                     <label class="block font-semibold mb-1">Titel</label>
-                    <input type="text" name="title" class="w-full border-gray-300 rounded" required>
+                    <input type="text" name="title" class="w-full border p-2 rounded"
+                           value="{{ old('title') }}">
+                    @error('title')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label class="block font-semibold mb-1">Inhoud</label>
-                    <textarea name="content" class="w-full border-gray-300 rounded" rows="4" required></textarea>
+                    <textarea name="content" class="w-full border p-2 rounded" rows="5">{{ old('content') }}</textarea>
+                    @error('content')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                <div class="mb-4">
-                    <label class="block font-semibold mb-1">Afbeelding (optioneel)</label>
-                    <input type="file" name="image" accept="image/*">
-                </div>
+                <div class="mb-6">
+    <label class="block font-semibold mb-1">Afbeelding (optioneel)</label>
+    <input type="file" name="image">
+</div>
 
-                <button class="bg-blue-600 text-white px-4 py-2 rounded">
-                    Opslaan
-                </button>
+                {{-- HIER is de knop --}}
+                <button type="submit"
+        class="bg-black text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-gray-800 transition-all">
+    Opslaan
+</button>
 
-                <a href="{{ route('news.index') }}" 
-                   class="ml-4 text-gray-600 hover:underline">
-                    Annuleren
-                </a>
+
+
+
             </form>
 
         </div>
     </div>
 </div>
-
 @endsection
