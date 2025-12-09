@@ -49,4 +49,39 @@ class NewsController extends Controller
 {
     return view('news.show', compact('news'));
 }
+
+public function edit(News $news)
+{
+    return view('news.edit', compact('news'));
+}
+
+public function update(Request $request, News $news)
+{
+    $request->validate([
+        'title' => 'required|min:3',
+        'content' => 'required|min:5',
+        'image' => 'nullable|image|max:2048'
+    ]);
+
+    
+    if ($request->hasFile('image')) {
+
+        
+        if ($news->image && \Storage::disk('public')->exists($news->image)) {
+            \Storage::disk('public')->delete($news->image);
+        }
+
+        $news->image = $request->file('image')->store('news_images', 'public');
+    }
+
+    
+    $news->update([
+        'title' => $request->title,
+        'content' => $request->content,
+    ]);
+
+    return redirect()->route('news.index')
+                     ->with('success', 'Nieuws succesvol bijgewerkt.');
+}
+
 }
