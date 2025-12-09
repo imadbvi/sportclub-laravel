@@ -37,6 +37,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::get('/users/{user}', [ProfileController::class, 'show'])
     ->name('profile.show');
 
+    use App\Http\Controllers\NewsController;
+
+Route::resource('news', NewsController::class);
 
 
 require __DIR__.'/auth.php';
