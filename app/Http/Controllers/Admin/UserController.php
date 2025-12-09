@@ -30,8 +30,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // straks invullen
+        $request->validate([
+            'name' => 'required|min:2',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'is_admin' => 'required',
+        ]);
+    
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+    
+            
+            'password' => $request->password,
+    
+            
+            'is_admin' => $request->is_admin === "1" ? 1 : 0,
+    
+            
+            'username' => null,
+            'birthday' => null,
+            'profile_picture' => null,
+            'about_me' => null,
+        ]);
+    
+        return redirect()->route('admin.users.index')
+                         ->with('success', 'Nieuwe gebruiker succesvol aangemaakt.');
     }
+    
 
     /**
      * Display the specified resource.
