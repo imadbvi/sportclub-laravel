@@ -33,6 +33,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 });
 
+// ==== PUBLIEK PROFIEL  ====
+Route::get('/users/{user}', [ProfileController::class, 'show'])
+    ->name('profile.show');
 
 
 
