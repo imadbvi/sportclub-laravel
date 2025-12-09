@@ -20,11 +20,37 @@
 
             <ul class="mt-4 space-y-2">
                 @foreach ($news as $item)
-                    <li>
-                        <a href="{{ route('news.show', $item) }}" class="text-blue-600 hover:underline">
-                            <strong>{{ $item->title }}</strong>
-                        </a>
-                    </li>
+                <li class="flex justify-between items-center border-b pb-2">
+
+{{-- Titel + link naar detailpagina --}}
+<a href="{{ route('news.show', $item) }}" class="text-blue-600 hover:underline">
+    <strong>{{ $item->title }}</strong>
+</a>
+
+{{-- Bewerken & Verwijderen knoppen --}}
+<div class="flex gap-2">
+
+    {{-- Bewerken --}}
+    <a href="{{ route('news.edit', $item) }}"
+       class="bg-black text-white px-3 py-1 rounded-md shadow hover:bg-gray-800 transition text-sm">
+       Bewerken
+    </a>
+
+    {{-- Verwijderen --}}
+    <form action="{{ route('news.destroy', $item) }}" method="POST"
+          onsubmit="return confirm('Weet je zeker dat je dit nieuwsbericht wilt verwijderen?')" class="inline">
+        @csrf
+        @method('DELETE')
+
+        <button class="bg-red-600 text-white px-3 py-1 rounded-md shadow hover:bg-red-800 transition text-sm">
+            Verwijderen
+        </button>
+    </form>
+
+</div>
+
+</li>
+
                 @endforeach
             </ul>
 

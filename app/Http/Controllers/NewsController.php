@@ -84,4 +84,19 @@ public function update(Request $request, News $news)
                      ->with('success', 'Nieuws succesvol bijgewerkt.');
 }
 
+public function destroy(News $news)
+{
+    
+    if ($news->image && \Storage::disk('public')->exists($news->image)) {
+        \Storage::disk('public')->delete($news->image);
+    }
+
+    
+    $news->delete();
+
+    return redirect()->route('news.index')
+                     ->with('success', 'Nieuws succesvol verwijderd.');
+}
+
+
 }
