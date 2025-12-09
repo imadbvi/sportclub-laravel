@@ -12,10 +12,11 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
 
-            <a href="{{ route('news.create') }}" 
-               class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
-                Nieuw bericht maken
-            </a>
+        <a href="{{ route('news.create') }}"
+   class="bg-black text-white font-bold px-4 py-2 rounded-lg shadow hover:bg-gray-800 transition inline-block mb-4">
+    + Nieuw bericht
+</a>
+
 
             <ul class="mt-4 space-y-2">
                 @foreach ($news as $item)
