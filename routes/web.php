@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NewsController;  
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,7 +13,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 // ==== GEBRUIKERS MIDDLEWARE ====
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -20,9 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 // ==== ADMIN ROUTES ====
-
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/dashboard', [AdminController::class, 'dashboard'])
@@ -37,9 +35,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::get('/users/{user}', [ProfileController::class, 'show'])
     ->name('profile.show');
 
-    use App\Http\Controllers\NewsController;
-
+// ==== NIEUWS ====
 Route::resource('news', NewsController::class);
-
 
 require __DIR__.'/auth.php';
