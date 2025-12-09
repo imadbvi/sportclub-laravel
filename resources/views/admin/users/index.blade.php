@@ -23,6 +23,17 @@
                     <td class="p-2 border">{{ $user->is_admin ? 'Ja' : 'Nee' }}</td>
                     <td class="p-2 border">
                         <a class="text-blue-600" href="{{ route('admin.users.edit', $user) }}">Bewerken</a>
+
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline">
+    @csrf
+    @method('DELETE')
+
+    <button class="text-red-600 ml-2"
+            onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')">
+        Verwijderen
+    </button>
+</form>
+
                     </td>
                 </tr>
             @endforeach
