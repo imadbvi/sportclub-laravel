@@ -1,19 +1,32 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Nieuws
+        </h2>
+    </x-slot>
 
-@section('title', 'Nieuws')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
 
-@section('content')
-    <h1>Nieuws</h1>
+                <h1 class="text-3xl font-bold mb-4">Nieuws</h1>
 
-    <a href="{{ route('news.create') }}" class="btn btn-primary">Nieuw bericht maken</a>
-
-    <ul style="margin-top:20px;">
-        @foreach ($news as $item)
-            <li>
-                <a href="{{ route('news.show', $item) }}">
-                    <strong>{{ $item->title }}</strong>
+                <a href="{{ route('news.create') }}" 
+                   class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
+                    Nieuw bericht maken
                 </a>
-            </li>
-        @endforeach
-    </ul>
-@endsection
+
+                <ul class="mt-4 space-y-2">
+                    @foreach ($news as $item)
+                        <li>
+                            <a href="{{ route('news.show', $item) }}" class="text-blue-600 hover:underline">
+                                <strong>{{ $item->title }}</strong>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</x-app-layout>
