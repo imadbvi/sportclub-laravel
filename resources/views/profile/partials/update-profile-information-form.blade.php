@@ -47,6 +47,44 @@
             @endif
         </div>
 
+<!-- Username -->
+<div>
+    <x-input-label for="username" :value="__('Gebruikersnaam')" />
+    <x-text-input id="username" name="username" type="text" class="mt-1 block w-full"
+        :value="old('username', $user->username)" autocomplete="username" />
+    <x-input-error :messages="$errors->get('username')" class="mt-2" />
+</div>
+
+<!-- Verjaardag -->
+<div>
+    <x-input-label for="birthday" :value="__('Geboortedatum')" />
+    <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full"
+        :value="old('birthday', $user->birthday)" />
+    <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
+</div>
+
+<!-- Over mij -->
+<div>
+    <x-input-label for="about_me" :value="__('Over mij')" />
+    <textarea id="about_me" name="about_me"
+        class="mt-1 block w-full border-gray-300 rounded-md">{{ old('about_me', $user->about_me) }}</textarea>
+    <x-input-error :messages="$errors->get('about_me')" class="mt-2" />
+</div>
+
+<!-- Profielfoto -->
+<div>
+    <x-input-label for="profile_picture" :value="__('Profielfoto')" />
+    <input id="profile_picture" name="profile_picture" type="file" class="mt-1 block w-full">
+
+    @if ($user->profile_picture)
+        <p class="mt-2">Huidige foto:</p>
+        <img src="{{ asset('storage/' . $user->profile_picture) }}"
+             class="w-24 h-24 rounded-full mt-1">
+    @endif
+
+    <x-input-error :messages="$errors->get('profile_picture')" class="mt-2" />
+</div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
