@@ -10,13 +10,13 @@ class FaqController extends Controller
     
     public function index()
     {
-        //
+        return view('admin.faqs.index');
     }
 
     
     public function create()
     {
-        //
+        return view('admin.faqs.create');
     }
 
     
