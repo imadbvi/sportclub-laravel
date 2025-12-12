@@ -21,6 +21,11 @@
                     <x-nav-link :href="route('faq.index')" :active="request()->routeIs('faq.index')">
     FAQ
 </x-nav-link>
+
+<x-nav-link :href="route('news.index')" :active="request()->routeIs('news.*')">
+    Nieuws
+</x-nav-link>
+
                     @auth
                         @if(auth()->user()->is_admin)
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
@@ -92,6 +97,9 @@
     FAQ
 </x-responsive-nav-link>
 
+<x-responsive-nav-link :href="route('news.index')" :active="request()->routeIs('news.*')">
+    Nieuws
+</x-responsive-nav-link>
             @auth
                 @if(auth()->user()->is_admin)
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
