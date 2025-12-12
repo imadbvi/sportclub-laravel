@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\NewsController;  
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 
@@ -38,7 +38,13 @@ Route::get('/users/{user}', [ProfileController::class, 'show'])
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
-// ==== NIEUWS ====
-Route::resource('news', NewsController::class);
+// ==== NIEUWS (PUBLIEK) ====
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
-require __DIR__.'/auth.php';
+// ==== NIEUWS (ADMIN) ====
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::resource('news', NewsController::class)->except(['index', 'show']);
+});
+
+require __DIR__ . '/auth.php';
