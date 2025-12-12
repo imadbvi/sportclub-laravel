@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -26,6 +27,8 @@ class FaqController extends Controller
             'question' => $request->question,
             'answer' => $request->answer,
         ]);
+
+        return redirect('/admin/faqs');
     }
 
     
