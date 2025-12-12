@@ -22,7 +22,10 @@ class FaqController extends Controller
     
     public function store(Request $request)
     {
-        //
+        Faq::create([
+            'question' => $request->question,
+            'answer' => $request->answer,
+        ]);
     }
 
     
