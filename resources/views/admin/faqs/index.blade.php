@@ -16,8 +16,20 @@
         </a>
 
         <div class="bg-white shadow rounded-lg p-6">
-            <p>Hier komt later de lijst met FAQ’s.</p>
+    @if($faqs->isEmpty())
+        <p>Er zijn nog geen FAQ’s.</p>
+    @else
+        <div class="space-y-4">
+            @foreach($faqs as $faq)
+                <div class="border rounded-lg p-4">
+                    <p class="font-bold">{{ $faq->question }}</p>
+                    <p class="mt-2 text-gray-700">{{ $faq->answer }}</p>
+                </div>
+            @endforeach
         </div>
+    @endif
+</div>
+
 
     </div>
 </div>
