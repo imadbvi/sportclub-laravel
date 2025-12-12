@@ -29,6 +29,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)
         ->names('admin.users');
 
+    Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);
 });
 
 // ==== PUBLIEK PROFIEL  ====
