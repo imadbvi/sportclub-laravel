@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NewsController;  
+use App\Http\Controllers\FaqController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +36,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 // ==== PUBLIEK PROFIEL  ====
 Route::get('/users/{user}', [ProfileController::class, 'show'])
     ->name('profile.show');
+    
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
 // ==== NIEUWS ====
 Route::resource('news', NewsController::class);
