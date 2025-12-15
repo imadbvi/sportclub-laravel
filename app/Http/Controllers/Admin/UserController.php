@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('admin.users.index')
-                         ->with('success', 'Nieuwe gebruiker succesvol aangemaakt.');
+            ->with('success', 'Nieuwe gebruiker succesvol aangemaakt.');
     }
 
     public function show(User $user)
@@ -80,6 +80,11 @@ class UserController extends Controller
             'is_admin' => $request->is_admin,
         ]);
 
+        // Prevent self-demotion
+        if ($user->id === auth()->id() && !$request->is_admin) {
+            return redirect()->back()->withErrors(['is_admin' => 'Je kunt jezelf niet degraderen.']);
+        }
+
         // Profielfoto uploaden
         if ($request->hasFile('profile_picture')) {
 
@@ -99,8 +104,12 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        if ($user->id === auth()->id()) {
+            return redirect()->back()->with('error', 'Je kunt jezelf niet verwijderen.');
+        }
+
         $user->delete();
         return redirect()->route('admin.users.index')
-                         ->with('success', 'Gebruiker verwijderd.');
+            ->with('success', 'Gebruiker verwijderd.');
     }
 }

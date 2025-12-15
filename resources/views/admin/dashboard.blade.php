@@ -58,23 +58,23 @@
                     </div>
                 </a>
 
-                {{-- Manage Users (Future) --}}
-                <div
-                    class="bg-white overflow-hidden shadow-md rounded-xl hover:shadow-lg transition duration-300 border-t-4 border-gray-300 opacity-75">
+                {{-- Manage Users --}}
+                <a href="{{ route('admin.users.index') }}"
+                    class="group bg-white overflow-hidden shadow-md rounded-xl hover:shadow-2xl transition duration-300 border-t-4 border-green-500">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <h4 class="text-xl font-bold text-gray-800">Ledenbeheer</h4>
-                            <div class="p-2 bg-gray-100 rounded-full">
-                                <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="p-2 bg-green-100 rounded-full group-hover:bg-green-200 transition">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                                     </path>
                                 </svg>
                             </div>
                         </div>
-                        <p class="text-gray-600">Beheer gebruikers en rollen (Binnenkort).</p>
+                        <p class="text-gray-600">Beheer gebruikers en rollen.</p>
                     </div>
-                </div>
+                </a>
 
             </div>
         </div>
