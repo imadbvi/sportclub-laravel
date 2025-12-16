@@ -28,7 +28,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-    
+
         // Vul alle tekstvelden in één keer
         $user->fill($request->only([
             'name',
@@ -37,31 +37,31 @@ class ProfileController extends Controller
             'birthday',
             'about_me',
         ]));
-    
+
         // Email resetten bij wijziging
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-    
+
         // Profielfoto uploaden
         if ($request->hasFile('profile_picture')) {
-    
+
             // Oude foto verwijderen indien aanwezig
             if ($user->profile_picture && \Storage::disk('public')->exists($user->profile_picture)) {
                 \Storage::disk('public')->delete($user->profile_picture);
             }
-    
+
             // Nieuwe foto opslaan
             $path = $request->file('profile_picture')->store('profile_pictures', 'public');
             $user->profile_picture = $path;
         }
-    
+
         // Alles opslaan
         $user->save();
-    
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-    
+
 
     /**
      * Delete the user's account.
@@ -85,8 +85,8 @@ class ProfileController extends Controller
     }
 
     public function show(User $user): View
-{
-    return view('profile.show', compact('user'));
-}
+    {
+        return view('profile.show', compact('user'));
+    }
 
 }
