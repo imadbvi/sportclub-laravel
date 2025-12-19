@@ -8,7 +8,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 // ==== GEBRUIKERS MIDDLEWARE ====

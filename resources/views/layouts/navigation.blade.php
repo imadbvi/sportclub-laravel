@@ -6,7 +6,7 @@
 
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2">
+                    <a href="{{ url('/') }}" class="flex items-center gap-2">
                         <svg class="h-8 w-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -17,6 +17,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="url('/')" :active="request()->is('/')"
+                        class="text-gray-300 hover:text-white hover:border-yellow-400 focus:text-white focus:border-yellow-400">
+                        {{ __('Home') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                         class="text-gray-300 hover:text-white hover:border-yellow-400 focus:text-white focus:border-yellow-400">
                         {{ __('Dashboard') }}
@@ -104,6 +109,11 @@
     <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden bg-blue-800">
 
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="url('/')" :active="request()->is('/')"
+                class="text-white hover:bg-blue-700 hover:text-white">
+                {{ __('Home') }}
+            </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                 class="text-white hover:bg-blue-700 hover:text-white">
                 {{ __('Dashboard') }}
