@@ -38,7 +38,10 @@ Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 // ==== NIEUWS (ADMIN) ====
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('news', NewsController::class)->except(['index', 'show']);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->names('admin.users');
+    Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->names('admin.faqs');
 });
 
 require __DIR__ . '/auth.php';
