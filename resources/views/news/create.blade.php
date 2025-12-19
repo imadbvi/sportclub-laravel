@@ -90,4 +90,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('dropzone-file').addEventListener('change', function (e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                const textElement = this.parentElement.querySelector('p.text-sm');
+                textElement.innerHTML = `<span class="font-semibold text-blue-600">${fileName}</span> geselecteerd`;
+            }
+        });
+    </script>
 @endsection

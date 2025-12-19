@@ -8,52 +8,57 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
-    
+
     public function index()
     {
-        $faqs = Faq::latest()->get();
-
-    return view('admin.faqs.index', compact('faqs'));
+        $faqs = Faq::with('category')->latest()->get();
+        return view('admin.faqs.index', compact('faqs'));
     }
 
-    
     public function create()
     {
-        return view('admin.faqs.create');
+        $categories = \App\Models\Category::all();
+        return view('admin.faqs.create', compact('categories'));
     }
 
-    
     public function store(Request $request)
     {
-        Faq::create([
-            'question' => $request->question,
-            'answer' => $request->answer,
+        $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
-        return redirect('/admin/faqs');
+        Faq::create($request->all());
+
+        return redirect()->route('admin.faqs.index')
+            ->with('success', 'Vraag succesvol toegevoegd.');
     }
 
-    
-    public function show(string $id)
+    public function edit(Faq $faq)
     {
-        //
+        $categories = \App\Models\Category::all();
+        return view('admin.faqs.edit', compact('faq', 'categories'));
     }
 
-    
-    public function edit(string $id)
+    public function update(Request $request, Faq $faq)
     {
-        //
+        $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $faq->update($request->all());
+
+        return redirect()->route('admin.faqs.index')
+            ->with('success', 'Vraag succesvol bijgewerkt.');
     }
 
-    
-    public function update(Request $request, string $id)
+    public function destroy(Faq $faq)
     {
-        //
-    }
-
-    
-    public function destroy(string $id)
-    {
-        //
+        $faq->delete();
+        return redirect()->route('admin.faqs.index')
+            ->with('success', 'Vraag verwijderd.');
     }
 }

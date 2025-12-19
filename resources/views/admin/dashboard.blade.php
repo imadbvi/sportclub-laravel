@@ -41,7 +41,7 @@
                 </a>
 
                 {{-- Manage FAQ --}}
-                <a href="{{ route('faq.index') }}"
+                <a href="{{ route('admin.faqs.index') }}"
                     class="group bg-white overflow-hidden shadow-md rounded-xl hover:shadow-2xl transition duration-300 border-t-4 border-blue-500">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
