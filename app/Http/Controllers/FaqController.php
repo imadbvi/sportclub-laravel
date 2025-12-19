@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Category;
 use App\Models\Faq;
 
 class FaqController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::all();
+        $categories = Category::with('faqs')->whereHas('faqs')->get();
 
-        return view('faq.index', compact('faqs'));
+        return view('faq.index', compact('categories'));
     }
 }

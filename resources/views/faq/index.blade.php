@@ -28,7 +28,7 @@
                 </svg>
             </div>
 
-            @if($faqs->isEmpty())
+            @if($categories->isEmpty())
                 {{-- Better Empty State --}}
                 <div class="text-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100">
                     <div class="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -47,12 +47,33 @@
                     </a>
                 </div>
             @else
-                <div class="space-y-6">
-                    @foreach($faqs as $faq)
-                        <div
-                            class="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition cursor-pointer border-l-4 border-blue-500">
-                            <h3 class="font-bold text-lg text-gray-900 mb-2">{{ $faq->question }}</h3>
-                            <p class="text-gray-600">{{ $faq->answer }}</p>
+                <div class="space-y-12">
+                    @foreach($categories as $category)
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6 pl-4 border-l-4 border-blue-500">{{ $category->name }}
+                            </h2>
+                            <div class="space-y-4">
+                                @foreach($category->faqs as $faq)
+                                    <div x-data="{ open: false }"
+                                        class="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-100">
+                                        <button @click="open = !open"
+                                            class="w-full text-left px-6 py-4 focus:outline-none hover:bg-gray-50 transition flex justify-between items-center">
+                                            <span class="font-medium text-lg text-gray-900">{{ $faq->question }}</span>
+                                            <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200"
+                                                :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </button>
+                                        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 transform -translate-y-2"
+                                            x-transition:enter-end="opacity-100 transform translate-y-0"
+                                            class="px-6 pb-6 pt-2 text-gray-600 border-t border-gray-50">
+                                            {{ $faq->answer }}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     @endforeach
                 </div>
