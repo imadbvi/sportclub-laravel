@@ -42,6 +42,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('news', NewsController::class)->except(['index', 'show']);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->names('admin.users');
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->names('admin.faqs');
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->names('admin.categories');
 });
 
 require __DIR__ . '/auth.php';
