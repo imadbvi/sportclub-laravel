@@ -69,6 +69,13 @@
                                     {{ __('Admin Nieuwsbeheer') }}
                                 </x-nav-link>
                             @endif
+
+                            @if(request()->routeIs('admin.contact.*'))
+                                <x-nav-link :href="route('admin.contact.index')" :active="true"
+                                    class="text-yellow-200 hover:text-yellow-100 border-yellow-400">
+                                    {{ __('Admin Contactberichten') }}
+                                </x-nav-link>
+                            @endif
                         @endif
                     @endauth
                 </div>
@@ -185,6 +192,13 @@
                         <x-responsive-nav-link :href="route('admin.news.index')" :active="true"
                             class="text-yellow-300 hover:text-yellow-200 bg-blue-700 border-l-4 border-yellow-400">
                             {{ __('Admin Nieuwsbeheer') }}
+                        </x-responsive-nav-link>
+                    @endif
+
+                    @if(request()->routeIs('admin.contact.*'))
+                        <x-responsive-nav-link :href="route('admin.contact.index')" :active="true"
+                            class="text-yellow-300 hover:text-yellow-200 bg-blue-700 border-l-4 border-yellow-400">
+                            {{ __('Admin Contactberichten') }}
                         </x-responsive-nav-link>
                     @endif
                 @endif

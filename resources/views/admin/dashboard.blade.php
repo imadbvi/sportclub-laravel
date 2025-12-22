@@ -85,6 +85,27 @@
                     </div>
                 </a>
 
+                {{-- Contact Messages --}}
+                <a href="{{ route('admin.contact.index') }}"
+                    class="group bg-white overflow-hidden shadow-md rounded-xl hover:shadow-2xl transition duration-300 border-t-4 border-purple-500">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-xl font-bold text-gray-800">Berichten</h4>
+                            <div class="p-2 bg-purple-100 rounded-full group-hover:bg-purple-200 transition">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Bekijk ingezonden contactformulieren.</p>
+                        <span
+                            class="text-purple-600 font-semibold group-hover:translate-x-1 inline-block transition-transform">Bekijk
+                            berichten &rarr;</span>
+                    </div>
+                </a>
+
             </div>
         </div>
     </div>

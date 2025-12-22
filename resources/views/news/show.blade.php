@@ -41,13 +41,6 @@
                                 {{ $news->published_at->format('d F Y') }}
                             </span>
                         @endif
-
-                        @if(Auth::check() && Auth::user()->is_admin)
-                            <a href="{{ route('news.edit', $news) }}"
-                                class="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors">
-                                Bewerken
-                            </a>
-                        @endif
                     </div>
 
                     {{-- Title --}}
