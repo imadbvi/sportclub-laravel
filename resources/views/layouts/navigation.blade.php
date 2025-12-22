@@ -62,6 +62,13 @@
                                     {{ __('Admin FAQ Beheer') }}
                                 </x-nav-link>
                             @endif
+
+                            @if(request()->routeIs('admin.news.*'))
+                                <x-nav-link :href="route('admin.news.index')" :active="true"
+                                    class="text-yellow-200 hover:text-yellow-100 border-yellow-400">
+                                    {{ __('Admin Nieuwsbeheer') }}
+                                </x-nav-link>
+                            @endif
                         @endif
                     @endauth
                 </div>
@@ -171,6 +178,13 @@
                         <x-responsive-nav-link :href="route('admin.faqs.index')" :active="true"
                             class="text-yellow-300 hover:text-yellow-200 bg-blue-700 border-l-4 border-yellow-400">
                             {{ __('Admin FAQ Beheer') }}
+                        </x-responsive-nav-link>
+                    @endif
+
+                    @if(request()->routeIs('admin.news.*'))
+                        <x-responsive-nav-link :href="route('admin.news.index')" :active="true"
+                            class="text-yellow-300 hover:text-yellow-200 bg-blue-700 border-l-4 border-yellow-400">
+                            {{ __('Admin Nieuwsbeheer') }}
                         </x-responsive-nav-link>
                     @endif
                 @endif

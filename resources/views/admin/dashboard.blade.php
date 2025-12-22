@@ -23,7 +23,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 {{-- Manage News --}}
-                <a href="{{ route('news.index') }}"
+                <a href="{{ route('admin.news.index') }}"
                     class="group bg-white overflow-hidden shadow-md rounded-xl hover:shadow-2xl transition duration-300 border-t-4 border-yellow-400">
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">

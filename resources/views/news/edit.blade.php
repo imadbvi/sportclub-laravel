@@ -5,7 +5,7 @@
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
 
             <div class="mb-6">
-                <a href="{{ route('news.index') }}"
+                <a href="{{ route('admin.news.index') }}"
                     class="inline-flex items-center text-gray-500 hover:text-gray-700 transition-colors">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -19,7 +19,7 @@
                 <div class="p-8">
                     <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">Nieuwsbericht bewerken</h2>
 
-                    <form action="{{ route('news.update', $news) }}" method="POST" enctype="multipart/form-data"
+                    <form action="{{ route('admin.news.update', $news) }}" method="POST" enctype="multipart/form-data"
                         class="space-y-6">
                         @csrf
                         @method('PUT')
