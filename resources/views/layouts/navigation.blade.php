@@ -48,6 +48,20 @@
                                 class="text-yellow-200 hover:text-yellow-100 border-transparent hover:border-yellow-400">
                                 {{ __('Admin Dashboard') }}
                             </x-nav-link>
+
+                            @if(request()->routeIs('admin.users.*'))
+                                <x-nav-link :href="route('admin.users.index')" :active="true"
+                                    class="text-yellow-200 hover:text-yellow-100 border-yellow-400">
+                                    {{ __('Admin Ledenbeheer') }}
+                                </x-nav-link>
+                            @endif
+
+                            @if(request()->routeIs('admin.faqs.*') || request()->routeIs('admin.categories.*'))
+                                <x-nav-link :href="route('admin.faqs.index')" :active="true"
+                                    class="text-yellow-200 hover:text-yellow-100 border-yellow-400">
+                                    {{ __('Admin FAQ Beheer') }}
+                                </x-nav-link>
+                            @endif
                         @endif
                     @endauth
                 </div>
@@ -145,6 +159,20 @@
                         class="text-yellow-300 hover:text-yellow-200">
                         {{ __('Admin Dashboard') }}
                     </x-responsive-nav-link>
+
+                    @if(request()->routeIs('admin.users.*'))
+                        <x-responsive-nav-link :href="route('admin.users.index')" :active="true"
+                            class="text-yellow-300 hover:text-yellow-200 bg-blue-700 border-l-4 border-yellow-400">
+                            {{ __('Admin Ledenbeheer') }}
+                        </x-responsive-nav-link>
+                    @endif
+
+                    @if(request()->routeIs('admin.faqs.*') || request()->routeIs('admin.categories.*'))
+                        <x-responsive-nav-link :href="route('admin.faqs.index')" :active="true"
+                            class="text-yellow-300 hover:text-yellow-200 bg-blue-700 border-l-4 border-yellow-400">
+                            {{ __('Admin FAQ Beheer') }}
+                        </x-responsive-nav-link>
+                    @endif
                 @endif
             @endauth
         </div>

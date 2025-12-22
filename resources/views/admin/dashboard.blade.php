@@ -13,7 +13,7 @@
             <div class="bg-blue-900 text-white overflow-hidden shadow-lg sm:rounded-xl mb-8">
                 <div class="p-8 flex justify-between items-center">
                     <div>
-                        <h3 class="text-3xl font-bold mb-2">Beheerderspaneel</h3>
+                        <h3 class="text-3xl font-bold mb-2">SportClub Beheer</h3>
                         <p class="text-blue-100">Beheer alle aspecten van de SportClub website.</p>
                     </div>
                     <div class="hidden md:block text-6xl opacity-20">⚙️</div>
@@ -36,7 +36,10 @@
                                 </svg>
                             </div>
                         </div>
-                        <p class="text-gray-600">Plaats, bewerk of verwijder nieuwsberichten.</p>
+                        <p class="text-gray-600 mb-4">Beheer al het clubnieuws en updates.</p>
+                        <span
+                            class="text-yellow-600 font-semibold group-hover:translate-x-1 inline-block transition-transform">Ga
+                            naar Nieuwsbeheer &rarr;</span>
                     </div>
                 </a>
 
@@ -54,7 +57,10 @@
                                 </svg>
                             </div>
                         </div>
-                        <p class="text-gray-600">Beheer veelgestelde vragen en categorieën.</p>
+                        <p class="text-gray-600 mb-4">Help leden met vragen en antwoorden.</p>
+                        <span
+                            class="text-blue-600 font-semibold group-hover:translate-x-1 inline-block transition-transform">Ga
+                            naar FAQ Beheer &rarr;</span>
                     </div>
                 </a>
 
@@ -72,7 +78,10 @@
                                 </svg>
                             </div>
                         </div>
-                        <p class="text-gray-600">Beheer gebruikers en rollen.</p>
+                        <p class="text-gray-600 mb-4">Beheer ledenlijst en admin-rechten.</p>
+                        <span
+                            class="text-green-600 font-semibold group-hover:translate-x-1 inline-block transition-transform">Ga
+                            naar Ledenbeheer &rarr;</span>
                     </div>
                 </a>
 
