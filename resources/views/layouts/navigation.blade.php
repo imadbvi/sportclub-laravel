@@ -37,6 +37,11 @@
                         FAQ
                     </x-nav-link>
 
+                    <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')"
+                        class="text-gray-300 hover:text-white hover:border-yellow-400 focus:text-white focus:border-yellow-400">
+                        Contact
+                    </x-nav-link>
+
                     @auth
                         @if(auth()->user()->is_admin)
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')"
@@ -127,6 +132,11 @@
             <x-responsive-nav-link :href="route('faq.index')" :active="request()->routeIs('faq.index')"
                 class="text-white hover:bg-blue-700 hover:text-white">
                 FAQ
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')"
+                class="text-white hover:bg-blue-700 hover:text-white">
+                Contact
             </x-responsive-nav-link>
 
             @auth

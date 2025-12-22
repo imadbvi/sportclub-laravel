@@ -144,7 +144,7 @@
             <div class="flex space-x-6">
                 <a href="#" class="text-gray-400 hover:text-white transition">Privacy</a>
                 <a href="#" class="text-gray-400 hover:text-white transition">Voorwaarden</a>
-                <a href="#" class="text-gray-400 hover:text-white transition">Contact</a>
+                <a href="{{ route('contact.index') }}" class="text-gray-400 hover:text-white transition">Contact</a>
             </div>
         </div>
     </footer>
