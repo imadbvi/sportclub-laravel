@@ -47,7 +47,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->names('admin.users');
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->names('admin.faqs');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->names('admin.categories');
-    Route::resource('contact', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'show', 'destroy'])->names('admin.contact');
+    Route::resource('contact', \App\Http\Controllers\Admin\ContactController::class)
+        ->only(['index', 'show', 'destroy'])
+        ->names('admin.contact')
+        ->parameters(['contact' => 'contact_message']);
 });
 
 require __DIR__ . '/auth.php';

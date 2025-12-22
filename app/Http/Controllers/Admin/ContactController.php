@@ -14,14 +14,14 @@ class ContactController extends Controller
         return view('admin.contact.index', compact('messages'));
     }
 
-    public function show(ContactMessage $message)
+    public function show(ContactMessage $contact_message)
     {
-        return view('admin.contact.show', compact('message'));
+        return view('admin.contact.show', ['message' => $contact_message]);
     }
 
-    public function destroy(ContactMessage $message)
+    public function destroy(ContactMessage $contact_message)
     {
-        $message->delete();
+        $contact_message->delete();
         return back()->with('success', 'Bericht verwijderd.');
     }
 }

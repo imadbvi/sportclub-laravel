@@ -68,7 +68,7 @@
                                         {{ Str::limit($message->message, 50) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="{{ route('admin.contact.show', ['contact' => $message->id]) }}"
+                                        <a href="{{ route('admin.contact.show', ['contact_message' => $message->id]) }}"
                                             class="text-blue-600 hover:text-blue-900 inline-block">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -79,7 +79,7 @@
                                             </svg>
                                         </a>
 
-                                        <form action="{{ route('admin.contact.destroy', ['contact' => $message->id]) }}"
+                                        <form action="{{ route('admin.contact.destroy', ['contact_message' => $message->id]) }}"
                                             method="POST" class="inline-block"
                                             onsubmit="return confirm('Weet je zeker dat je dit bericht wilt verwijderen?');">
                                             @csrf
