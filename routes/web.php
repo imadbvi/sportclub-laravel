@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserMessageController;
+use App\Http\Controllers\Admin\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
@@ -22,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiel/bewerken', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profiel', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profiel', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/my-messages', [UserMessageController::class, 'index'])->name('user.messages.index');
+    Route::get('/my-messages/{message}', [UserMessageController::class, 'show'])->name('user.messages.show');
+    Route::post('/my-messages/{message}/reply', [UserMessageController::class, 'reply'])->name('user.messages.reply');
 });
 
 // ...
@@ -47,10 +53,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->names('admin.users');
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->names('admin.faqs');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->names('admin.categories');
-    Route::resource('contact', \App\Http\Controllers\Admin\ContactController::class)
-        ->only(['index', 'show', 'destroy'])
-        ->names('admin.contact')
-        ->parameters(['contact' => 'contact_message']);
+    Route::resource('contact', ContactController::class)
+        ->parameters(['contact' => 'contact_message'])
+        ->except(['create', 'store', 'edit', 'update'])
+        ->names('admin.contact');
+
+    Route::post('contact/{contact_message}/reply', [ContactController::class, 'reply'])->name('admin.contact.reply');
 });
 
 require __DIR__ . '/auth.php';

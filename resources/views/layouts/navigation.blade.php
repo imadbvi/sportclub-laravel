@@ -43,6 +43,10 @@
                     </x-nav-link>
 
                     @auth
+                        <x-nav-link :href="route('user.messages.index')" :active="request()->routeIs('user.messages.*')"
+                            class="text-gray-300 hover:text-white hover:border-yellow-400 focus:text-white focus:border-yellow-400">
+                            {{ __('Mijn Berichten') }}
+                        </x-nav-link>
                         @if(auth()->user()->is_admin)
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')"
                                 class="text-yellow-200 hover:text-yellow-100 border-transparent hover:border-yellow-400">
@@ -168,6 +172,11 @@
             </x-responsive-nav-link>
 
             @auth
+                <x-responsive-nav-link :href="route('user.messages.index')" :active="request()->routeIs('user.messages.*')"
+                    class="text-white hover:bg-blue-700 hover:text-white">
+                    {{ __('Mijn Berichten') }}
+                </x-responsive-nav-link>
+
                 @if(auth()->user()->is_admin)
                     <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')"
                         class="text-yellow-300 hover:text-yellow-200">

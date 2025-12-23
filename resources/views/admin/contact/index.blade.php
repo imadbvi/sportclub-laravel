@@ -52,7 +52,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($messages as $message)
-                                <tr>
+                                <tr class="{{ !$message->is_read ? 'bg-blue-50' : '' }}">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ $message->created_at?->format('d-m-Y H:i') ?? '-' }}
                                     </td>
@@ -60,8 +60,14 @@
                                         <div class="text-sm font-medium text-gray-900">{{ $message->name }}</div>
                                         <div class="text-sm text-gray-500">{{ $message->email }}</div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ $message->subject }}
+                                        @if(!$message->is_read)
+                                            <span
+                                                class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+                                                Nieuw
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate"
                                         title="{{ $message->message }}">

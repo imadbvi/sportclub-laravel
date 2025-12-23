@@ -23,7 +23,13 @@ class ContactController extends Controller
         ]);
 
         // Save to database
-        \App\Models\ContactMessage::create($data);
+        \App\Models\ContactMessage::create([
+            'user_id' => auth()->id(),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'subject' => $data['subject'],
+            'message' => $data['message'],
+        ]);
 
         // Send email to admin (replace with actual admin email or env variable)
         Mail::to('admin@sportclub.com')->send(new ContactFormMail($data));
