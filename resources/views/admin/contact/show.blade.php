@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="mt-8 pt-6 border-t flex justify-end">
-                        <form action="{{ route('admin.contact.destroy', ['contact' => $message->id]) }}"
+                        <form action="{{ route('admin.contact.destroy', ['contact_message' => $message->id]) }}"
                             method="POST" onsubmit="return confirm('Weet je zeker dat je dit bericht wilt verwijderen?');">
                             @csrf
                             @method('DELETE')
