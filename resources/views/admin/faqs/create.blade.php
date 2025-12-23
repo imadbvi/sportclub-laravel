@@ -41,7 +41,8 @@
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="question" type="text" name="question" value="{{ old('question') }}" required>
+                                id="question" type="text" name="question" value="{{ old('question', request('question')) }}"
+                                required>
                             @error('question')
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
@@ -53,7 +54,8 @@
                             </label>
                             <textarea
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="answer" name="answer" rows="5" required>{{ old('answer') }}</textarea>
+                                id="answer" name="answer" rows="5"
+                                required>{{ old('answer', request('answer')) }}</textarea>
                             @error('answer')
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
