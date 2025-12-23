@@ -46,6 +46,12 @@ Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
+// ==== COMMENTS ====
+Route::middleware('auth')->group(function () {
+    Route::post('/news/{news}/comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [\App\Http\Controllers\CommentController::class, 'destroy'])->name('comments.destroy');
+});
+
 // ==== NIEUWS (ADMIN) ====
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

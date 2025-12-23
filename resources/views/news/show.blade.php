@@ -56,6 +56,64 @@
                 </div>
             </article>
 
+            {{-- Comments Section --}}
+            <div class="mt-12 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Reacties ({{ $news->comments->count() }})</h3>
+
+                {{-- List Comments --}}
+                <div class="space-y-6 mb-10">
+                    @forelse($news->comments as $comment)
+                        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center mb-2">
+                                    <div class="font-semibold text-gray-900 mr-2">{{ $comment->user->name }}</div>
+                                    <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
+                                </div>
+                                @if(auth()->id() === $comment->user_id || auth()->check() && auth()->user()->is_admin)
+                                    <form action="{{ route('comments.destroy', $comment) }}" method="POST"
+                                        onsubmit="return confirm('Weet je het zeker?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700 text-sm">Verwijderen</button>
+                                    </form>
+                                @endif
+                            </div>
+                            <p class="text-gray-700 whitespace-pre-line">{{ $comment->content }}</p>
+                        </div>
+                    @empty
+                        <p class="text-gray-500 italic">Er zijn nog geen reacties geplaatst.</p>
+                    @endforelse
+                </div>
+
+                {{-- Comment Form --}}
+                @auth
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h4 class="text-lg font-semibold mb-4">Plaats een reactie</h4>
+                        <form action="{{ route('comments.store', $news) }}" method="POST">
+                            @csrf
+                            <div class="mb-4">
+                                <textarea name="content" rows="4"
+                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="Schrijf hier je reactie..." required></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit"
+                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow transition">
+                                    Plaats Reactie
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                @else
+                    <div class="bg-blue-50 p-6 rounded-lg text-center">
+                        <p class="text-blue-800">
+                            <a href="{{ route('login') }}" class="font-bold underline hover:text-blue-900">Log in</a> om een
+                            reactie te plaatsen.
+                        </p>
+                    </div>
+                @endauth
+            </div>
+
         </div>
     </div>
 @endsection

@@ -103,14 +103,48 @@
             </div>
         </div>
 
-        <script>
-            document.getElementById('dropzone-file').addEventListener('change', function (e) {
-                const fileName = e.target.files[0]?.name;
-                if (fileName) {
-                    const textElement = this.parentElement.querySelector('p.text-sm');
-                    textElement.innerHTML = `<span class="font-semibold text-blue-600">${fileName}</span> geselecteerd`;
-                }
-            });
-        </script>
+        {{-- Comments Management --}}
+        <div class="mt-8 bg-white overflow-hidden shadow-xl rounded-2xl">
+            <div class="p-8">
+                <h3 class="text-xl font-bold mb-6 text-gray-800 border-b pb-4">Reacties Beheren
+                    ({{ $news->comments->count() }})</h3>
+
+                <div class="space-y-6">
+                    @forelse($news->comments as $comment)
+                        <div class="flex justify-between items-start bg-gray-50 p-4 rounded-lg border border-gray-100">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="font-semibold text-gray-900">{{ $comment->user->name }}</span>
+                                    <span class="text-xs text-gray-500">{{ $comment->created_at->format('d-m-Y H:i') }}</span>
+                                </div>
+                                <p class="text-gray-700 text-sm">{{ $comment->content }}</p>
+                            </div>
+                            <form action="{{ route('comments.destroy', $comment) }}" method="POST"
+                                onsubmit="return confirm('Wil je deze reactie definitief verwijderen?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="text-red-600 hover:text-red-800 text-sm font-medium hover:underline">
+                                    Verwijderen
+                                </button>
+                            </form>
+                        </div>
+                    @empty
+                        <p class="text-gray-500 italic">Er zijn nog geen reacties op dit bericht.</p>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('dropzone-file').addEventListener('change', function (e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                const textElement = this.parentElement.querySelector('p.text-sm');
+                textElement.innerHTML = `<span class="font-semibold text-blue-600">${fileName}</span> geselecteerd`;
+            }
+        });
+    </script>
     </div>
 @endsection
