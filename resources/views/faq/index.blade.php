@@ -18,18 +18,27 @@
             </div>
 
             {{-- Search Bar (Visual Only for now) --}}
+            {{-- Search Bar --}}
             <div class="max-w-xl mx-auto mb-12 relative">
-                <input type="text" placeholder="Zoek een vraag..."
-                    class="w-full px-5 py-4 rounded-full border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition pl-12 text-gray-700">
-                <svg class="w-6 h-6 text-gray-400 absolute left-4 top-4" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
+                <form action="{{ route('faq.index') }}" method="GET">
+                    <input type="text" name="search" placeholder="Zoek een vraag..." value="{{ request('search') }}"
+                        class="w-full px-5 py-4 rounded-full border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition pl-12 text-gray-700">
+                    <button type="submit" class="absolute left-4 top-4 text-gray-400 hover:text-blue-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    @if(request('search'))
+                        <a href="{{ route('faq.index') }}"
+                            class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 text-sm font-semibold">
+                            Wissen
+                        </a>
+                    @endif
+                </form>
             </div>
 
             @if($categories->isEmpty())
-                {{-- Better Empty State --}}
                 <div class="text-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100">
                     <div class="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,12 +47,21 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Nog geen vragen</h3>
-                    <p class="text-gray-500 mb-8 max-w-sm mx-auto">De lijst met veelgestelde vragen is momenteel nog leeg. Kom
-                        later terug of stel je vraag direct.</p>
-                    <a href="#"
+                    
+                    @if(request('search'))
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Geen resultaten gevonden</h3>
+                        <p class="text-gray-500 mb-8 max-w-sm mx-auto">
+                            We hebben geen antwoord kunnen vinden op je vraag: "<strong>{{ request('search') }}</strong>".
+                            <br>Stel je vraag direct aan ons team.
+                        </p>
+                    @else
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Nog geen vragen</h3>
+                        <p class="text-gray-500 mb-8 max-w-sm mx-auto">De lijst met veelgestelde vragen is momenteel nog leeg.</p>
+                    @endif
+
+                    <a href="{{ route('contact.index') }}"
                         class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
-                        Contact opnemen
+                        Neem contact op
                     </a>
                 </div>
             @else
