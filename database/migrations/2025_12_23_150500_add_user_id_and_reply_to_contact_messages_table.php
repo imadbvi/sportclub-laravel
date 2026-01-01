@@ -9,9 +9,15 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('contact_messages', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->after('id')->constrained()->nullOnDelete();
-            $table->text('admin_reply')->nullable()->after('message');
-            $table->timestamp('replied_at')->nullable()->after('admin_reply');
+            if (!Schema::hasColumn('contact_messages', 'user_id')) {
+                $table->foreignId('user_id')->nullable()->after('id')->constrained()->nullOnDelete();
+            }
+            if (!Schema::hasColumn('contact_messages', 'admin_reply')) {
+                $table->text('admin_reply')->nullable()->after('message');
+            }
+            if (!Schema::hasColumn('contact_messages', 'replied_at')) {
+                $table->timestamp('replied_at')->nullable()->after('admin_reply');
+            }
         });
     }
 
