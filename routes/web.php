@@ -17,7 +17,8 @@ Route::get('/', function () {
 // ==== GEBRUIKERS MIDDLEWARE ====
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $teams = App\Models\Team::all();
+        return view('dashboard', compact('teams'));
     })->name('dashboard');
 
     // Profiel bewerken
@@ -65,6 +66,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         ->names('admin.contact');
 
     Route::post('contact/{contact_message}/reply', [ContactController::class, 'reply'])->name('admin.contact.reply');
+
+    Route::get('/registrations', [\App\Http\Controllers\Admin\RegistrationController::class, 'index'])->name('admin.registrations.index');
+    Route::post('/registrations/{registration}/reply', [\App\Http\Controllers\Admin\RegistrationController::class, 'reply'])->name('admin.registrations.reply');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/registrations/create', [\App\Http\Controllers\RegistrationController::class, 'create'])->name('registrations.create');
+    Route::post('/registrations', [\App\Http\Controllers\RegistrationController::class, 'store'])->name('registrations.store');
 });
 
 require __DIR__ . '/auth.php';

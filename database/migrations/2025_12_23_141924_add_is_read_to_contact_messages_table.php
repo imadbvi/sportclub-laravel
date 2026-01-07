@@ -9,7 +9,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('contact_messages', function (Blueprint $table) {
-            $table->boolean('is_read')->default(false)->after('replied_at');
+            $table->boolean('is_read')->default(false);
         });
     }
 
